@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 function App() {
   const [value, setValue] = useState("");
-  const [data, setData] = useState("");
+  const [data, setData] = useState("Qora");
   const [price, setPrice] = useState();
   const [task, setTask] = useState([]);
 
@@ -14,16 +14,24 @@ function App() {
       task: data,
       price: price,
     };
-    if (value.trim().length === 0 || data.trim().length === 0 || price.trim().length === 0) {
-      alert("ILTIMOS HAMMASINI TO'LDIRING")
+    if (
+      value.trim().length === 0 ||
+      data.trim().length === 0 ||
+      price.trim().length === 0
+    ) {
+      alert("ILTIMOS HAMMASINI TO'LDIRING");
+    } else {
+      setTask([...task, taskName]);
+      setData("");
+      setPrice("");
+      setValue("");
     }
-    else{
-      setTask([...task, taskName])
-      setData("")
-      setPrice("")
-      setValue("")
-    }
-    
+  };
+  const deleteBtn = (id) => {
+    const resultTask = task.filter((element) => {
+      return element.id !== id;
+    });
+    setTask(resultTask);
   };
 
   return (
@@ -41,11 +49,12 @@ function App() {
           />
         </div>
         <div>
-          <select 
+          <select
             className="form-control mb-3 shadow w-50"
             type="text"
             value={data}
-            onChange={(e) => setData(e.target.value)}>
+            onChange={(e) => setData(e.target.value)}
+          >
             <option value="Qora">Qora</option>
             <option value="Oq">Oq</option>
             <option value="Qizil">Qizil</option>
@@ -63,7 +72,7 @@ function App() {
         <button
           onClick={() => {
             addItem();
-          }} 
+          }}
           className="btn btn-success"
         >
           ADD TASK
@@ -81,7 +90,7 @@ function App() {
         </thead>
         <tbody>
           {task.length > 0 ? (
-            task.map((e,i) => {
+            task.map((e, i) => {
               return (
                 <>
                   <tr key={e.id}>
@@ -89,6 +98,16 @@ function App() {
                     <td>{e.product}</td>
                     <td>{e.task}</td>
                     <td>{e.price}</td>
+                    <td>
+                      <button
+                        onClick={() => {
+                          deleteBtn(e.id);
+                        }}
+                        className="btn btn-danger"
+                      >
+                        DELETE
+                      </button>
+                    </td>
                   </tr>
                 </>
               );
