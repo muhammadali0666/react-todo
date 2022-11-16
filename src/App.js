@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { ToastContainer, toast } from 'react-toastify';
 
 function App() {
   const [value, setValue] = useState("");
@@ -19,12 +20,31 @@ function App() {
       data.trim().length === 0 ||
       price.trim().length === 0
     ) {
-      alert("ILTIMOS HAMMASINI TO'LDIRING");
+      toast.error("ILTIMOS HAMMASINI TO'LDIRING", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        })
     } else {
       setTask([...task, taskName]);
       setData("");
       setPrice("");
       setValue("");
+      toast.success("TASKS SUCCSESSFULLY ADDED", {
+        position: "top-left",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        })
     }
   };
   const deleteBtn = (id) => {
@@ -36,6 +56,7 @@ function App() {
 
   return (
     <div className="App container">
+      <ToastContainer />
       <h1 className="mx-auto text-success py-3">Mahsulot kriting</h1>
 
       <div className="box">
@@ -101,8 +122,18 @@ function App() {
                     <td>
                       <button
                         onClick={() => {
-                          deleteBtn(e.id);
-                        }}
+                          deleteBtn(e.id)
+                          toast.warning("TASK DELETED", {
+                            position: "bottom-left",
+                            autoClose: 3000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "dark",
+                            })
+                          }}
                         className="btn btn-danger"
                       >
                         DELETE
