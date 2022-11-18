@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { ToastContainer, toast } from 'react-toastify';
+import {Header} from "./Components/Header/header.jsx"
+import { Footer } from "./Components/Footer/footer.jsx";
 
 function App() {
   const [value, setValue] = useState("");
@@ -57,8 +59,8 @@ function App() {
   return (
     <div className="App container">
       <ToastContainer />
-      <h1 className="mx-auto text-success py-3">Mahsulot kriting</h1>
-
+        <Header/>
+        <h1 className="mx-auto text-success py-3">Mahsulot kriting</h1>
       <div className="box">
         <div className="">
           <input
@@ -85,7 +87,7 @@ function App() {
           <input
             className="form-control mb-3 shadow w-50"
             type="number"
-            placeholder="mahsulot kriting..."
+            placeholder="narxini kriting..."
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />
@@ -123,7 +125,7 @@ function App() {
                       <button
                         onClick={() => {
                           deleteBtn(e.id)
-                          toast.warning("TASK DELETED", {
+                          toast.info("TASK DELETED", {
                             position: "bottom-left",
                             autoClose: 3000,
                             hideProgressBar: false,
@@ -148,6 +150,7 @@ function App() {
           )}
         </tbody>
       </table>
+      <Footer/>
     </div>
   );
 }
