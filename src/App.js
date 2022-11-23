@@ -6,9 +6,13 @@ import { Footer } from "./Components/Footer/footer.jsx";
 
 function App() {
   const [value, setValue] = useState("");
-  const [data, setData] = useState("Qora");
+  const [data, setData] = useState("O'rtacha");
   const [price, setPrice] = useState();
   const [task, setTask] = useState([]);
+
+  console.log(value);
+  console.log(data);
+  console.log(price);
 
   const addItem = () => {
     const taskName = {
@@ -78,9 +82,9 @@ function App() {
             value={data}
             onChange={(e) => setData(e.target.value)}
           >
-            <option value="Qora">Qora</option>
-            <option value="Oq">Oq</option>
-            <option value="Qizil">Qizil</option>
+            <option value="Katta">Katta</option>
+            <option value="O'rtacha">O'rtacha</option>
+            <option value="Kichik">Kichik</option>
           </select>
         </div>
         <div>
